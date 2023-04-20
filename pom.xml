@@ -43,12 +43,12 @@
             <scope>runtime</scope>
         </dependency>
 
-<!--        &lt;!&ndash; jdbc for session-->
-<!--            FIXME: should be replaced to Redis&ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.session</groupId>-->
-<!--            <artifactId>spring-session-jdbc</artifactId>-->
-<!--        </dependency>-->
+        <!-- jdbc for session
+            FIXME: should be replaced to Redis-->
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session-jdbc</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -51,10 +51,10 @@ spring:
         # alter SQL syntax from h2 to MySQL
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
 
-#  session:
-#    # external session storage
-#    # FIXME : should be replaced to Redis
-#    store-type: jdbc
+  session:
+    # external session storage
+    # FIXME : should be replaced to Redis
+    store-type: jdbc
 
 # log 표시
 logging.level:
