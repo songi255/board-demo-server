@@ -1,0 +1,61 @@
+###############
+### default ###
+###############
+
+---
+############
+### real ###
+############
+spring:
+  config:
+    activate:
+      on-profile: "db-prod"
+
+  # secrets (url, user, password) have to defined in docker.
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+
+
+  jpa:
+    hibernate:
+      # turn off jpa auto ddl
+      ddl-auto: none
+
+
+
+---
+###########
+### dev ###
+###########
+spring:
+  config:
+    activate:
+      on-profile: "db-dev"
+
+  h2:
+    console:
+      # enable h2 console access
+      enabled: true
+
+  datasource:
+    url: jdbc:h2:mem:h2-test;MODE=MySQL # h2 접속 url
+    username: admin
+    password: 1234
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    # show generated sql
+    show-sql: true
+    properties:
+      hibernate:
+        # alter SQL syntax from h2 to MySQL
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
+#  session:
+#    # external session storage
+#    # FIXME : should be replaced to Redis
+#    store-type: jdbc
+
+# log 표시
+logging.level:
+  org.hibernate.SQL: debug

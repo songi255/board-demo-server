@@ -1,0 +1,22 @@
+###############
+### default ###
+###############
+
+---
+############
+### real ###
+############
+spring:
+  config:
+    activate:
+      on-profile: "common-prod"
+
+
+---
+###########
+### dev ###
+###########
+spring:
+  config:
+    activate:
+      on-profile: "common-dev"
