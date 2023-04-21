@@ -7,7 +7,13 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-// User별 Post 확인 또한 필요함.(Join)
+/**
+ * User 정보 JPA Entity Class
+ * 
+ * TODO : User 별 Post 확인 필요
+ *
+ * @author Dave Shin
+ */
 
 @Getter
 @NoArgsConstructor
@@ -18,7 +24,7 @@ public class UserInfo {
     private Long no;
 
     @Column(nullable = false)
-    private String id;
+    private String name;
 
     // TODO: 보안조치 고려 필요
     @JsonIgnore
@@ -34,17 +40,17 @@ public class UserInfo {
     private Role role;
 
     // Test 용도
-    public UserInfo(Long no, String id, String password, String nickname, Role role) {
+    public UserInfo(Long no, String name, String password, String nickname, Role role) {
         this.no = no;
-        this.id = id;
+        this.name = name;
         this.password = password;
         this.nickname = nickname;
         this.role = role;
     }
 
     @Builder
-    public UserInfo(String id, String password, String nickname, Role role) {
-        this.id = id;
+    public UserInfo(String name, String password, String nickname, Role role) {
+        this.name = name;
         this.password = password;
         this.nickname = nickname;
         this.role = role;

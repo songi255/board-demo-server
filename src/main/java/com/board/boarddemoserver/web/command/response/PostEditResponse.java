@@ -1,4 +1,4 @@
-package com.board.boarddemoserver.web.command.post;
+package com.board.boarddemoserver.web.command.response;
 
 import com.board.boarddemoserver.domain.post.Post;
 import lombok.Getter;
@@ -6,16 +6,18 @@ import lombok.Getter;
 import java.time.LocalDateTime;
 
 @Getter
-public class PostGetListResponse {
+public class PostEditResponse {
+    private Long no;
     private String title;
     private String content;
     private String author;
-    private LocalDateTime createdTime;
+    private LocalDateTime modifiedTime;
 
-    public PostGetListResponse(Post post){
+    public PostEditResponse(Post post) {
+        this.no = post.getNo();
         this.title = post.getTitle();
         this.content = post.getContent();
         this.author = post.getAuthor().getNickname();
-        this.createdTime = post.getCreatedTime();
+        this.modifiedTime = post.getModifiedTime();
     }
 }

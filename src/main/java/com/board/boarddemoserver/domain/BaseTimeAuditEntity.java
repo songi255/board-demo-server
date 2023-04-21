@@ -9,6 +9,12 @@ import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
+/**
+ * Auditing 데이터를 추가하기 위한 Super Class.
+ *
+ * @author Dave Shin
+ */
+
 @Getter
 @MappedSuperclass
 // Auditing 활성화

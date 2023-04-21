@@ -11,6 +11,13 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 
 import javax.servlet.http.HttpSession;
 
+/**
+ * Session 에 저장된 정보를 @LoginUser 를 통해 argument 로
+ * 바로 받을 수 있게 하는 Argument Resolver
+ *
+ * @author Dave Shin
+ */
+
 @RequiredArgsConstructor
 @Component
 public class LoginUserArgumentResolver implements HandlerMethodArgumentResolver {
@@ -18,7 +25,7 @@ public class LoginUserArgumentResolver implements HandlerMethodArgumentResolver 
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        boolean isLoginUserAnnotation = parameter.hasMethodAnnotation(LoginUser.class);
+        boolean isLoginUserAnnotation = parameter.hasParameterAnnotation(LoginUser.class);
         boolean isSessionUserClass = parameter.getParameterType().equals(SessionUser.class);
 
         return isLoginUserAnnotation && isSessionUserClass;

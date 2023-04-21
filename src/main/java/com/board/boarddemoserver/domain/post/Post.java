@@ -8,6 +8,13 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+/**
+ * 게시글 JPA Entity Class
+ *
+ *
+ * @author Dave Shin
+ */
+
 @Getter
 @NoArgsConstructor
 @Entity
@@ -41,6 +48,7 @@ public class Post extends BaseTimeAuditEntity {
         this.author = author;
     }
 
+    // post 수정. author 는 수정될 일이 없다.
     public void update(String title, String content){
         this.title = title;
         this.content = content;

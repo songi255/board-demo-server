@@ -14,6 +14,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Random;
 
+/**
+ * 개발환경에서 실행 시 초기 test 데이터 로딩
+ *
+ * @author Dave Shin
+ */
+
 @RequiredArgsConstructor
 @Profile("dev")
 @Component
@@ -30,15 +36,20 @@ public class DataInitializer {
         UserInfo user3 = userInfoRepository.save(new UserInfo("alice", "alice1234", "princess33", Role.USER));
 
         // Dummy Post
+        // Data
         String lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id elementum turpis, eget sodales mi. Aliquam sem libero, maximus quis lorem id, auctor sollicitudin ligula. Nunc ornare ante nec libero egestas, id sollicitudin risus elementum. Aliquam luctus metus in purus sollicitudin accumsan. Ut ut mauris sapien. Pellentesque vitae ante condimentum, varius est in, pharetra urna. Praesent porttitor libero non sem sodales bibendum.";
-        String[] lorems = lorem.split("[ ,\\.]");
+        String[] lorems = lorem.split("[\\.]");
         UserInfo[] authors = {user1, user2, user3};
         Random random = new Random();
-        
-        for (int i = 0; i < 200; i++){
+
+        int POST_CNT = 200;
+        int CHUNK_CNT = 3;
+
+        // Generation
+        for (int i = 0; i < POST_CNT; i++){
             String title = "test-" + random.nextInt(Integer.MAX_VALUE);
             StringBuilder sb = new StringBuilder();
-            for (int j = 0; j < 20; j++) {
+            for (int j = 0; j < CHUNK_CNT; j++) {
                 sb.append(lorems[random.nextInt(lorems.length)]).append(' ');
             }
             String content = sb.toString();

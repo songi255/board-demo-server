@@ -1,4 +1,4 @@
-package com.board.boarddemoserver.web.command.post;
+package com.board.boarddemoserver.web.command.response;
 
 import lombok.Getter;
 

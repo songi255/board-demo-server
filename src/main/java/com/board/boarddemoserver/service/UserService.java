@@ -1,7 +1,7 @@
 package com.board.boarddemoserver.service;
 
 import com.board.boarddemoserver.domain.user.UserInfoRepository;
-import com.board.boarddemoserver.web.command.post.UserListResponse;
+import com.board.boarddemoserver.web.command.response.UserListResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,29 +1,42 @@
 package com.board.boarddemoserver.web;
 
+import com.board.boarddemoserver.config.security.dto.SessionUser;
 import com.board.boarddemoserver.domain.user.UserInfo;
-import com.board.boarddemoserver.web.command.post.LoginRequest;
+import com.board.boarddemoserver.domain.user.UserInfoRepository;
+import com.board.boarddemoserver.domain.user.UserNotFoundException;
+import com.board.boarddemoserver.web.command.request.LoginRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.naming.AuthenticationException;
 import javax.servlet.http.HttpSession;
+
+/**
+ * Login, Logout 처리 담당 Controller
+ *
+ * @author Dave Shin
+ */
 
 @RequiredArgsConstructor
 @RestController
 public class LoginController {
+    private final UserInfoRepository userInfoRepository;
 
     @PostMapping("/login")
-    public ResponseEntity<UserInfo> login(@RequestParam LoginRequest request, HttpSession session){
-        // 1. id로 User entity 조회
-        // 2. password 대조.
-        // 3. 성공시 session 에 setattribute 로 ok(User) 데이터를 넣음 -> sessionUser 로 바꾸자.(영속성)
-        // 4. 실패 시 status 에 UnAutho ㅇㅇ
+    public ResponseEntity<Void> login(@RequestBody LoginRequest request, HttpSession session) throws Exception{
+        UserInfo userInfo = userInfoRepository.findByName(request.getName())
+                .orElseThrow(UserNotFoundException::new);
 
-        return null;
+        if (userInfo.getPassword().equals(request.getPassword())){
+            session.setAttribute("user", new SessionUser(userInfo));
+            return ResponseEntity.accepted().build();
+        } else {
+            throw new AuthenticationException("비밀번호가 일치하지 않습니다.");
+        }
     }
-
 
     @PostMapping("/logout")
     public ResponseEntity<Void> logout(HttpSession session){

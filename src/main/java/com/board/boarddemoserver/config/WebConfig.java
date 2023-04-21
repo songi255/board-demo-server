@@ -8,6 +8,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.List;
 
+/**
+ * Web Layer 관련 설정 클래스
+ *
+ * 현재 설정값
+ *  - ArgumentResolver 등록
+ *
+ * @author Dave Shin
+ */
+
 @RequiredArgsConstructor
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
