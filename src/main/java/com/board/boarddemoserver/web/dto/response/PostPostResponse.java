@@ -1,4 +1,4 @@
-package com.board.boarddemoserver.web.command.response;
+package com.board.boarddemoserver.web.dto.response;
 
 import com.board.boarddemoserver.domain.post.Post;
 import lombok.Builder;

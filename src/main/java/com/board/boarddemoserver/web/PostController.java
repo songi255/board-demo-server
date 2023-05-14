@@ -2,15 +2,14 @@ package com.board.boarddemoserver.web;
 
 import com.board.boarddemoserver.config.security.LoginUser;
 import com.board.boarddemoserver.config.security.dto.SessionUser;
-import com.board.boarddemoserver.domain.user.Role;
 import com.board.boarddemoserver.service.PostService;
-import com.board.boarddemoserver.web.command.request.*;
-import com.board.boarddemoserver.web.command.response.*;
+import com.board.boarddemoserver.web.dto.request.*;
+import com.board.boarddemoserver.web.dto.response.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -42,7 +41,7 @@ public class PostController {
     // 게시글 작성
     //@PreAuthorize("hasRole(ROLE_USER)")
     @PostMapping("")
-    public ResponseEntity<PostPostResponse> post(@RequestBody PostPostRequest request,
+    public ResponseEntity<PostPostResponse> post(@RequestBody @Valid PostPostRequest request,
                                                  @LoginUser SessionUser sessionUser){
         request.setAuthor(sessionUser.getNickname());
         PostPostResponse response = postService.post(request);
@@ -55,7 +54,7 @@ public class PostController {
     //@PreAuthorize()
     @PutMapping("/{postId}")
     public ResponseEntity<PostEditResponse> edit(@PathVariable Long postId,
-                                                 @RequestBody PostEditRequest request){
+                                                 @RequestBody @Valid PostEditRequest request){
         postService.edit(postId, request);
 
         return null;

@@ -1,11 +1,13 @@
-package com.board.boarddemoserver.web.command.request;
+package com.board.boarddemoserver.web.dto.request;
 
-import com.board.boarddemoserver.domain.post.Post;
-import com.board.boarddemoserver.domain.user.UserInfo;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Null;
+import javax.validation.constraints.Size;
 
 /**
  * 게시글 작성 요청 Command
@@ -19,8 +21,11 @@ import lombok.Setter;
 @NoArgsConstructor
 @Setter
 public class PostPostRequest {
+    @NotBlank
     private String title;
+    @Size(max = 1000) // 본문 최대 1000자 제한
     private String content;
+    @Null // author 는 Session 에서 주입
     private String author;
 
     @Builder

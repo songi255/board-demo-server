@@ -4,7 +4,7 @@ import com.board.boarddemoserver.config.security.dto.SessionUser;
 import com.board.boarddemoserver.domain.user.UserInfo;
 import com.board.boarddemoserver.domain.user.UserInfoRepository;
 import com.board.boarddemoserver.domain.user.UserNotFoundException;
-import com.board.boarddemoserver.web.command.request.LoginRequest;
+import com.board.boarddemoserver.web.dto.request.LoginRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.naming.AuthenticationException;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 /**
  * Login, Logout 처리 담당 Controller
@@ -26,7 +27,7 @@ public class LoginController {
     private final UserInfoRepository userInfoRepository;
 
     @PostMapping("/login")
-    public ResponseEntity<Void> login(@RequestBody LoginRequest request, HttpSession session) throws Exception{
+    public ResponseEntity<Void> login(@RequestBody @Valid LoginRequest request, HttpSession session) throws Exception{
         UserInfo userInfo = userInfoRepository.findByName(request.getName())
                 .orElseThrow(UserNotFoundException::new);
 

@@ -1,4 +1,4 @@
-package com.board.boarddemoserver.web.command.response;
+package com.board.boarddemoserver.web.dto.response;
 
 import lombok.Getter;
 
