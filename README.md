@@ -20,8 +20,6 @@
 - dto 객체 명세
 - response 응답내용 및 httpStatus 확인
 - Logging 추가
-- Command 검증
-- ControllerAdvice 추가
 - Test 코드 작성
 - Docs 작성
 - HATEOAS 적용
